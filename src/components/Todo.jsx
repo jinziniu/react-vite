@@ -215,40 +215,37 @@ const WebcamCapture = ({ imgSrc, setImgSrc, ...props }) => {
 
 
    const ViewPhoto = (props) => {
-    const photoSrc = GetPhotoSrc(props.id);
-    
-    if (GetPhotoSrc(props.id)==null) {
-      alert("ID is empty.");
-      return null; 
+    const [photoSrc, setPhotoSrc] = useState(null);
+  
+    useEffect(() => {
+      GetPhotoSrc(props.id).then(src => {
+        setPhotoSrc(src);
+      });
+    }, [props.id]);
+  
+    if (!photoSrc) {
+      return <div style={{margin: 'auto'}}>No photo available.</div>;
     }
   
     const handleDeletePhoto = () => {
       deletePhoto(props.id);
     };
-    
-    return (
-      
-    <>
-    <div style={{margin: 'auto' }}>
-
-    <img src={photoSrc} alt={props.name} />
-    
-    <button
-              type="button"
-              className="btn btn__danger"
-              onClick={() => {
-                handleDeletePhoto();
-              }}
-            >
-              Delete Photo
-            </button>
-       
-    
-    
-    </div>
-    </>
-    );
-   };
   
+    return (
+      <>
+        <div style={{margin: 'auto'}}>
+          <img src={photoSrc} alt={props.name} />
+          <button
+            type="button"
+            className="btn btn__danger"
+            onClick={handleDeletePhoto}
+          >
+            Delete Photo
+          </button>
+        </div>
+      </>
+    );
+  };
+
   export default Todo;
   

@@ -35,11 +35,13 @@ async function deletePhoto(id) {
     }
   }
 
-function GetPhotoSrc(id) {
- console.log("getPhotoSrc", id);
- const img = useLiveQuery(() => db.photos.where("id").equals(id).toArray());
- console.table(img);
- if (Array.isArray(img)) return img[0].imgSrc; 
- return id;
-} 
+  function GetPhotoSrc(id) {
+    return db.photos.where("id").equals(id).first().then(photo => {
+      if (photo) {
+        return photo.imgSrc;
+      } else {
+        return null;
+      }
+    });
+  }
 export { addPhoto, GetPhotoSrc ,deletePhoto}; 

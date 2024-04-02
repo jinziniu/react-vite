@@ -3,9 +3,9 @@ import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 // 地图容器样式
 const containerStyle = {
-  width: '800px',  // 或者是100%等，根据需要设置
-  height: '400px'  // 地图的高度
-};
+    width: '100%',  // 使用100%宽度以适应父容器
+    height: '50vh'  // 使用视口高度的50%，您可以根据需要调整
+  };
 
 
 const defaultCenter = {

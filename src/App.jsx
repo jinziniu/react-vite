@@ -4,7 +4,8 @@ import Todo from "./components/Todo";
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import MapComponent from "./components/MapComponent";
-
+import TranslateComponent from './components/TranslateComponent';
+import Weather from './components/WeatherComponent';
 
 const FILTER_MAP = {
   All: () => true,
@@ -164,25 +165,28 @@ const [tasks, setTasks] = usePersistedState("tasks", []);
   const tasksNoun = taskList.length !== 1 ? "tasks" : "task";
   const headingText = `${taskList.length} ${tasksNoun} remaining`;
 
+
   return (
     <div className="todoapp stack-large">
-      <h1>Geo TodoMatic</h1>
-      <Form addTask={addTask} geoFindMe={geoFindMe} />
-      <div className="filters btn-group stack-exception">{filterList}</div>
-      <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
-        {headingText}
-      </h2>
-      <ul
-        aria-labelledby="list-heading"
-        className="todo-list stack-large stack-exception"
-        role="list"
-      >
-        {taskList}
-      </ul>
-      {/* 将 MapComponent 放在页面最底下 */}
-      <MapComponent center={currentLocation} />
+        <h1>Geo TodoMatic</h1>
+        <TranslateComponent /> {/* 将翻译组件放置在这里 */}
+        
+        <Form addTask={addTask} geoFindMe={geoFindMe} />
+        <div className="filters btn-group stack-exception">{filterList}</div>
+        <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
+            {headingText}
+        </h2>
+        <ul
+            aria-labelledby="list-heading"
+            className="todo-list stack-large stack-exception"
+            role="list"
+        >
+            {taskList}
+        </ul>
+        <MapComponent center={currentLocation} />
+        <Weather lat={currentLocation.lat} lon={currentLocation.lng} /> 
     </div>
-  );
+);
   
   }
 

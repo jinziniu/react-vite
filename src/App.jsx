@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import Todo from "./components/Todo";
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
-
+import MapComponent from "./components/MapComponent";
 
 
 const FILTER_MAP = {
@@ -17,6 +17,7 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
 function App(props) {
 
   const listHeadingRef = useRef(null);
+  const [currentLocation, setCurrentLocation] = useState({ lat: -34.397, lng: 150.644 });
 
   const geoFindMe = () => {
     if (!navigator.geolocation) {
@@ -27,8 +28,9 @@ function App(props) {
     }
     };
     const success = (position) => {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      setCurrentLocation({ lat: latitude, lng: longitude });
     console.log(latitude, longitude);
     console.log(`Latitude: ${latitude}°, Longitude: ${longitude}°`);
     console.log(`Try here: https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`);
@@ -164,21 +166,24 @@ const [tasks, setTasks] = usePersistedState("tasks", []);
 
   return (
     <div className="todoapp stack-large">
-    <h1>Geo TodoMatic</h1>
-    <Form addTask={addTask} geoFindMe={geoFindMe} />{" "}
-    <div className="filters btn-group stack-exception">{filterList}</div>
-    <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
-    {headingText}
-    </h2>
-    <ul
-    aria-labelledby="list-heading"
-    className="todo-list stack-large stack-exception"
-    role="list"
-    >
-    {taskList}
-    </ul>
+      <h1>Geo TodoMatic</h1>
+      <Form addTask={addTask} geoFindMe={geoFindMe} />
+      <div className="filters btn-group stack-exception">{filterList}</div>
+      <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
+        {headingText}
+      </h2>
+      <ul
+        aria-labelledby="list-heading"
+        className="todo-list stack-large stack-exception"
+        role="list"
+      >
+        {taskList}
+      </ul>
+      {/* 将 MapComponent 放在页面最底下 */}
+      <MapComponent center={currentLocation} />
     </div>
-   );
+  );
+  
   }
 
 export default App;

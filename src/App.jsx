@@ -44,6 +44,9 @@ function App(props) {
     const error = () => {
     console.log("Unable to retrieve your location");
     };
+    useEffect(() => {
+      geoFindMe();
+    }, []);
 
 function usePersistedState(key,defaultValue){
 const [state,setState]=useState(()=>JSON.parse(localStorage.getItem(key))||defaultValue);
@@ -183,6 +186,7 @@ const [tasks, setTasks] = usePersistedState("tasks", []);
         >
             {taskList}
         </ul>
+        
         <MapComponent center={currentLocation} />
         <Weather lat={currentLocation.lat} lon={currentLocation.lng} /> 
     </div>

@@ -212,38 +212,44 @@ return <li className="todo">{isEditing ? editingTemplate : viewTemplate}</li>;
 
 
 
-   const ViewPhoto = (props) => {
-    const [photoSrc, setPhotoSrc] = useState(null);
-  
-    useEffect(() => {
-      GetPhotoSrc(props.id).then(src => {
-        setPhotoSrc(src);
-      });
-    }, [props.id]);
-  
-    if (!photoSrc) {
-      return <div style={{margin: 'auto'}}>No photo available.</div>;
-    }
-  
-    const handleDeletePhoto = () => {
-      deletePhoto(props.id);
-    };
-  
-    return (
-      <>
-        <div style={{margin: 'auto'}}>
-          <img src={photoSrc} alt={props.name} />
-          <button
-            type="button"
-            className="btn btn__danger"
-            onClick={handleDeletePhoto}
-          >
-            Delete Photo
-          </button>
-        </div>
-      </>
-    );
+const ViewPhoto = (props) => {
+  const [photoSrc, setPhotoSrc] = useState(null);
+
+  useEffect(() => {
+    GetPhotoSrc(props.id).then(src => {
+      setPhotoSrc(src);
+    });
+  }, [props.id]);
+
+  const handleDeletePhoto = () => {
+    deletePhoto(props.id);
+    setPhotoSrc(null); // 添加这一行以在删除后更新UI
   };
+
+  if (!photoSrc) {
+    return <div style={{margin: 'auto'}}>No photo available.</div>;
+  }
+
+  return (
+    <>
+      <div style={{margin: 'auto'}}>
+        <img 
+          src={photoSrc} 
+          alt={props.name}
+          style={{ maxWidth: '100%', height: 'auto' }} // 添加内联样式以控制图片大小
+        />
+        <button
+          type="button"
+          className="btn btn__danger"
+          onClick={handleDeletePhoto}
+        >
+          Delete Photo
+        </button>
+      </div>
+    </>
+  );
+};
+
 
   export default Todo;
   

@@ -6,6 +6,7 @@ import FilterButton from "./components/FilterButton";
 import MapComponent from "./components/MapComponent";
 import TranslateComponent from './components/TranslateComponent';
 import Weather from './components/WeatherComponent';
+import SMSComponent from './components/SMSComponent';
 
 const FILTER_MAP = {
   All: () => true,
@@ -16,7 +17,7 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 
 function App(props) {
-
+  const [localStorageArray, setLocalStorageArray] = useState([]);
   const listHeadingRef = useRef(null);
   const [currentLocation, setCurrentLocation] = useState({ lat: -34.397, lng: 150.644 });
 
@@ -165,6 +166,8 @@ const [tasks, setTasks] = usePersistedState("tasks", []);
     }
 
 
+    
+
   const tasksNoun = taskList.length !== 1 ? "tasks" : "task";
   const headingText = `${taskList.length} ${tasksNoun} remaining`;
 
@@ -173,10 +176,12 @@ const [tasks, setTasks] = usePersistedState("tasks", []);
     <div className="todoapp stack-large">
         <h1>Geo TodoMatic</h1>
         <TranslateComponent /> {/* 将翻译组件放置在这里 */}
+        <SMSComponent /> 
         
         <Form addTask={addTask} geoFindMe={geoFindMe} />
         <div className="filters btn-group stack-exception">{filterList}</div>
         <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
+
             {headingText}
         </h2>
         <ul
@@ -190,7 +195,9 @@ const [tasks, setTasks] = usePersistedState("tasks", []);
         <MapComponent center={currentLocation} />
         <Weather lat={currentLocation.lat} lon={currentLocation.lng} /> 
     </div>
+    
 );
+
   
   }
 

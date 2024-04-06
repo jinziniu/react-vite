@@ -1,0 +1,15 @@
+{
+    "tasks": [
+      {
+        "id": "todo-1",
+        "name": "Learn React",
+        "completed": false
+      },
+      {
+        "id": "todo-2",
+        "name": "Write an app",
+        "completed": true
+      }
+    ]
+  }
+  

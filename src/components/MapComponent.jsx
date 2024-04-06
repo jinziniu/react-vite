@@ -29,6 +29,7 @@ function MapComponent() {
       );
     }
   }, []);
+  
 
   return (
     <LoadScript
@@ -39,7 +40,7 @@ function MapComponent() {
         center={currentLocation}
         zoom={20}  // 初始缩放级别
       >
-        {/* 这里可以放置地图的其他组件，如标记等 */}
+     
       </GoogleMap>
     </LoadScript>
   );

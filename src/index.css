@@ -301,3 +301,45 @@ body {
   opacity: 1;
 }
 /* End checkbox styles */
+/* SMS按钮样式 */
+.btn-sms {
+  background-color: #4caf50; /* 绿色背景 */
+  color: white; /* 白色文字 */
+  border: none; /* 无边框 */
+  padding: 10px 15px; /* 内边距 */
+  border-radius: 5px; /* 圆角 */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 阴影效果 */
+  transition: background-color 0.3s ease; /* 过渡效果 */
+}
+
+.btn-sms:hover {
+  background-color: #45a049; /* 按钮悬停效果 */
+}
+
+/* 弹窗基本样式 */
+.popup-content {
+  border-radius: 10px; /* 圆角 */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* 阴影效果 */
+  padding: 20px; /* 内边距 */
+}
+
+/* 弹窗内部的布局和按钮样式 */
+.popup-inner {
+  text-align: center; /* 文本居中 */
+}
+
+.popup-inner .btn {
+  margin-top: 15px; /* 上边距 */
+  width: auto; /* 宽度自动 */
+}
+
+/* 如果弹窗中的按钮有特殊样式，可以在这里添加 */
+.popup-inner .btn-primary {
+  background-color: #007bff; /* 蓝色背景 */
+  color: white; /* 白色文字 */
+}
+
+.popup-inner .btn-danger {
+  background-color: #dc3545; /* 红色背景 */
+  color: white; /* 白色文字 */
+}

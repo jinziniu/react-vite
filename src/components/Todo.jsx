@@ -5,7 +5,9 @@ import Webcam from "react-webcam";
 import { addPhoto,deletePhoto, GetPhotoSrc } from "../db.jsx"; 
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import SMSComponent from './SMSComponent.jsx'; // 确保路径正确
+import MapComponent from "./MapComponent.jsx";
+import WeatherComponent from "./WeatherComponent.jsx";
 
 function Todo(props) {
   const [isEditing, setEditing] = useState(false);
@@ -13,6 +15,30 @@ function Todo(props) {
   const editButtonRef = useRef(null);
   const [returnToMain, setReturnToMain] = useState(false);
   const [imgSrc, setImgSrc] = useState(null);
+  const [location, setLocation] = useState({ lat: null, lng: null });
+
+  const fetchLocation = () => {
+    if (!navigator.geolocation) {
+      console.error('Geolocation is not supported by this browser.');
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          });
+        },
+        (error) => {
+          console.error('Error fetching location:', error);
+        }
+      );
+    }
+  };
+
+ useEffect(() => {
+    fetchLocation();
+  }, []);
+
 
   function handleChange(e) {
     setNewName(e.target.value);
@@ -69,10 +95,38 @@ const viewTemplate = (
   <label className="todo-label" htmlFor={props.id}>
   {props.name}
 
-  <a href={props.location.mapURL}>(map)</a>
-  &nbsp; | &nbsp;
-  <a href={props.location.smsURL}>(sms)</a> 
- 
+  <Popup
+      trigger={<button type="button" className="btn">(map)</button>}
+      modal
+      nested
+    >
+      {close => (
+        <div>
+          {/* 使用location状态 */}
+          <MapComponent center={location} />
+          <WeatherComponent lat={location.lat} lon={location.lng} />
+          <button className="btn" onClick={close}>Close</button>
+        </div>
+      )}
+</Popup>
+
+
+  <Popup
+          trigger={<button type="button" className="btn">(sms)</button>}
+          modal
+          nested
+        >
+          {close => (
+            <SMSComponent 
+              close={close} 
+              taskId={props.id}
+              taskName={props.name}
+              // 这里添加任何其他的 props 你的 SMSComponent 需要
+            />
+          )}
+
+        </Popup>
+
   </label>
   </div>
   <div className="btn-group">

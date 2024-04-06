@@ -175,7 +175,7 @@ const [tasks, setTasks] = usePersistedState("tasks", []);
   return (
     <div className="todoapp stack-large">
         <h1>Geo TodoMatic</h1>
-        <TranslateComponent /> {/* 将翻译组件放置在这里 */} 
+       
         <Form addTask={addTask} geoFindMe={geoFindMe} />
         <div className="filters btn-group stack-exception">{filterList}</div>
         <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
@@ -186,12 +186,10 @@ const [tasks, setTasks] = usePersistedState("tasks", []);
             aria-labelledby="list-heading"
             className="todo-list stack-large stack-exception"
             role="list"
-        >
+        > 
             {taskList}
         </ul>
-        
-        <MapComponent center={currentLocation} />
-        <Weather lat={currentLocation.lat} lon={currentLocation.lng} /> 
+        <TranslateComponent /> {/* 将翻译组件放置在这里 */} 
     </div>
     
 );

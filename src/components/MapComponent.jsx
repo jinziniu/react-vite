@@ -1,46 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 // 地图容器样式
 const containerStyle = {
-    width: '100%',  // 使用100%宽度以适应父容器
+    width: '100%',
     height: '50vh'  // 使用视口高度的50%，您可以根据需要调整
-  };
-
-
-const defaultCenter = {
-  lat: -34.397,
-  lng: 150.644
 };
 
-function MapComponent() {
-  const [currentLocation, setCurrentLocation] = useState(defaultCenter);
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          const { latitude, longitude } = position.coords;
-          setCurrentLocation({ lat: latitude, lng: longitude });
-        },
-        () => {
-          console.error("Error getting the location");
-        }
-      );
-    }
-  }, []);
-  
-
+function MapComponent({ center }) {
+  // 确保center属性已被正确传递到组件中
+  // center的结构应为{ lat: x, lng: y }
   return (
     <LoadScript
-      googleMapsApiKey="AIzaSyAZ5Z93-PaKWNCbtS2u3lOB8pRabsMJrCs"  
+    googleMapsApiKey="AIzaSyAZ5Z93-PaKWNCbtS2u3lOB8pRabsMJrCs"   // 请替换为您的Google Maps API密钥
     >
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={currentLocation}
-        zoom={20}  // 初始缩放级别
+        center={center}  // 使用传入的坐标作为地图中心
+        zoom={15}  // 初始缩放级别，您可以根据需要调整
       >
-     
+        {/* 这里可以添加地图的其他组件，如标记等 */}
       </GoogleMap>
     </LoadScript>
   );

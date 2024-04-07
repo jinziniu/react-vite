@@ -16,29 +16,13 @@ function Todo(props) {
   const [returnToMain, setReturnToMain] = useState(false);
   const [imgSrc, setImgSrc] = useState(null);
   const [location, setLocation] = useState({ lat: null, lng: null });
+  const [latitude, longitude] = props.name.split(',').map(Number);
 
-  const fetchLocation = () => {
-    if (!navigator.geolocation) {
-      console.error('Geolocation is not supported by this browser.');
-    } else {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          });
-        },
-        (error) => {
-          console.error('Error fetching location:', error);
-        }
-      );
-    }
-  };
+;
 
- useEffect(() => {
-    fetchLocation();
-  }, []);
-
+  useEffect(() => {
+    setLocation({ lat: latitude, lng: longitude });
+  }, [latitude, longitude]);
 
   function handleChange(e) {
     setNewName(e.target.value);
@@ -94,21 +78,28 @@ const viewTemplate = (
   />
   <label className="todo-label" htmlFor={props.id}>
   {props.name}
-
-  <Popup
-      trigger={<button type="button" className="btn">(map)</button>}
-      modal
-      nested
-    >
-      {close => (
-        <div>
-          {/* 使用location状态 */}
-          <MapComponent center={location} />
-          <WeatherComponent lat={location.lat} lon={location.lng} />
-          <button className="btn" onClick={close}>Close</button>
-        </div>
-      )}
-</Popup>
+  
+    <Popup
+        trigger={<button type="button" className="btn">(map)</button>}
+        modal
+        nested
+      >
+        {close => (
+          <div>
+              <MapComponent center={{ lat: latitude, lng: longitude }} />
+              <WeatherComponent lat={latitude} lon={longitude} />
+              <button
+                  className="btn"
+                  onClick={() => {
+                      close();
+                      window.location.reload(); // 刷新整个页面
+                  }}
+              >
+                  Close
+              </button>
+          </div>
+        )}
+      </Popup>
 
 
   <Popup

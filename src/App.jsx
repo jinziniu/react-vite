@@ -3,10 +3,10 @@ import { nanoid } from "nanoid";
 import Todo from "./components/Todo";
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
-import MapComponent from "./components/MapComponent";
 import TranslateComponent from './components/TranslateComponent';
-import Weather from './components/WeatherComponent';
-import SMSComponent from './components/SMSComponent';
+import GoogleMap from './components/GoogleMapComponent'; 
+import { Modal } from 'react-bootstrap';
+
 
 const FILTER_MAP = {
   All: () => true,
@@ -17,18 +17,47 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 
 function App(props) {
-  const [localStorageArray, setLocalStorageArray] = useState([]);
+  
+  const [showMapModal, setShowMapModal] = useState(false);
+  const [showMap, setShowMap] = useState(false);
+  const toggleMapModal = () => {
+    setShowMapModal(!showMapModal);
+  };
+  
+  
+  const closeAndRefresh = () => {
+    setShowMapModal(false);  // 关闭模态窗口
+    window.location.reload(); // 刷新页面
+  };
+
+
+
+
   const listHeadingRef = useRef(null);
   const [currentLocation, setCurrentLocation] = useState({ lat: -34.397, lng: 150.644 });
-
   const geoFindMe = () => {
     if (!navigator.geolocation) {
-    console.log("Geolocation is not supported by your browser");
+      console.log("Geolocation is not supported by your browser");
     } else {
-    console.log("Locating…");
-    navigator.geolocation.getCurrentPosition(success, error);
+      console.log("Locating…");
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setCurrentLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          });
+          console.log(`Latitude: ${position.coords.latitude}°, Longitude: ${position.coords.longitude}°`);
+        },
+        () => {
+          console.log("Unable to retrieve your location");
+        }
+      );
     }
-    };
+  };
+
+  useEffect(() => {
+    geoFindMe();
+  }, []);
     const success = (position) => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
@@ -175,11 +204,21 @@ const [tasks, setTasks] = usePersistedState("tasks", []);
   return (
     <div className="todoapp stack-large">
         <h1>Geo TodoMatic</h1>
-       
+        <button onClick={toggleMapModal}>Show Map of Current location</button>
+
+        {showMapModal && (
+        <div className="modal" onClick={toggleMapModal}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <GoogleMap currentLocation={currentLocation} />
+            <button onClick={closeAndRefresh}>Close</button> {/* 关闭按钮 */}
+          </div>
+        </div>
+      )}
+
         <Form addTask={addTask} geoFindMe={geoFindMe} />
         <div className="filters btn-group stack-exception">{filterList}</div>
         <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
-
+     
             {headingText}
         </h2>
         <ul
@@ -189,6 +228,7 @@ const [tasks, setTasks] = usePersistedState("tasks", []);
         > 
             {taskList}
         </ul>
+       
         <TranslateComponent /> {/* 将翻译组件放置在这里 */} 
     </div>
     

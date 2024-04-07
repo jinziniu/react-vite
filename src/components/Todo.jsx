@@ -79,27 +79,28 @@ const viewTemplate = (
   <label className="todo-label" htmlFor={props.id}>
   {props.name}
   
-    <Popup
-        trigger={<button type="button" className="btn">(map)</button>}
-        modal
-        nested
-      >
-        {close => (
-          <div>
-              <MapComponent center={{ lat: latitude, lng: longitude }} />
-              <WeatherComponent lat={latitude} lon={longitude} />
-              <button
-                  className="btn"
-                  onClick={() => {
-                      close();
-                      window.location.reload(); // 刷新整个页面
-                  }}
-              >
-                  Close
-              </button>
-          </div>
-        )}
-      </Popup>
+  <Popup
+    trigger={<button type="button" className="btn">(map)</button>}
+    modal
+    nested
+>
+    {close => (
+      <div className="modal-content">
+          <MapComponent center={{ lat: latitude, lng: longitude }} />
+          <WeatherComponent lat={latitude} lon={longitude} />
+          <button
+              className="btn"
+              onClick={() => {
+                  close();
+                  window.location.reload(); // 刷新整个页面
+              }}
+          >
+              Close
+          </button>
+      </div>
+    )}
+</Popup>
+
 
 
   <Popup

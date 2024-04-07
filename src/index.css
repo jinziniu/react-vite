@@ -343,3 +343,22 @@ body {
   background-color: #dc3545; /* 红色背景 */
   color: white; /* 白色文字 */
 }
+.modal-content {
+  width: 90%; /* 或者你可以使用最大宽度 max-width */
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+      width: 100%;
+      height: 100vh; /* 取决于你的需求，你可能想要在手机上使模态框更高 */
+      overflow: auto; /* 如果内容较多，允许滚动 */
+      border-radius: 0; /* 在手机上，你可能不需要圆角 */
+  }
+}

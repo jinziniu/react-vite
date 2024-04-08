@@ -2,209 +2,248 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
 }
+
 *:focus-visible {
-  outline: 3px dashed #228bec;
-  outline-offset: 0;
+  outline: 3px dashed #228bec; /* Clear and visible focus style */
+  outline-offset: 2px; /* Adds space between the outline and the element's border */
 }
+
 html {
-  font: 62.5% / 1.15 sans-serif;
+  font-size: 62.5%; /* Sets the base font size to 10px for easier calculations (1rem = 10px) */
+  line-height: 1.6; /* Improved line-height for better readability */
 }
-h1,
-h2 {
-  margin-bottom: 0;
+
+body {
+  background-color: #f5f5f5; /* Light gray background to reduce eye strain */
+  color: #333; /* Darker text color for better readability */
+  font-family: 'Helvetica Neue', Arial, sans-serif; /* Modern, readable font */
+  margin: 0 auto; /* Centers the content */
+  max-width: 68rem; /* Maximum width of the content */
+  width: 100%; /* Makes the body take full width of the viewport */
+  font-size: 1.6rem; /* Sets the default font size to 16px */
 }
+
+/* Heading styles */
+h1, h2 {
+  margin-bottom: 0.5rem; /* Adds bottom margin for spacing */
+  font-weight: normal; /* More natural weight for headings */
+  color: #222; /* Slightly darker color for headings */
+}
+
+/* List styles */
 ul {
-  list-style: none;
-  padding: 0;
+  list-style: none; /* Removes the default list style */
+  padding: 0; /* Removes default padding */
 }
-button {
+
+/* Button and input styles */
+button,
+input[type="text"] {
   -moz-osx-font-smoothing: inherit;
   -webkit-font-smoothing: inherit;
-  appearance: none;
-  background: transparent;
-  border: none;
-  color: inherit;
-  font: inherit;
-  line-height: normal;
-  margin: 0;
-  overflow: visible;
-  padding: 0;
-  width: auto;
-}
-button::-moz-focus-inner {
-  border: 0;
-}
-button,
-input,
-optgroup,
-select,
-textarea {
   font-family: inherit;
-  font-size: 100%;
-  line-height: 1.15;
+  font-size: inherit;
+  line-height: inherit;
   margin: 0;
+  padding: 0.5rem; /* Adds padding for better touch */
+  border: 1px solid #ccc; /* Subtle border for buttons and inputs */
+  background-color: #fff; /* White background for buttons and inputs */
+  color: inherit;
+  border-radius: 4px; /* Rounded corners for buttons and inputs */
+  transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for hover and focus */
 }
-button,
-input {
-  overflow: visible;
+
+button:hover,
+input[type="text"]:hover {
+  border-color: #228bec; /* Highlight border on hover */
 }
-input[type="text"] {
-  border-radius: 0;
+
+button:focus,
+input[type="text"]:focus {
+  border-color: #228bec; /* Highlight border on focus */
+  background-color: #eef6fc; /* Light background on focus for inputs */
 }
-body {
-  background-color: #f5f5f5;
-  color: #4d4d4d;
-  font:
-    1.6rem/1.25 Arial,
-    sans-serif;
-  margin: 0 auto;
-  max-width: 68rem;
-  width: 100%;
-}
+
+/* Responsive typography */
 @media screen and (min-width: 620px) {
   body {
-    font-size: 1.9rem;
-    line-height: 1.31579;
+    font-size: 1.9rem; /* Larger font size for larger screens */
+    line-height: 1.5; /* Adjusted line height for readability */
   }
 }
+
 /* End resets */
 /* Global styles */
+/* Form input styling */
 .form-group > input[type="text"] {
-  display: inline-block;
-  margin-top: 0.4rem;
+  display: block; /* Change to block for full-width input fields */
+  margin: 0.4rem 0; /* Uniform margin for top and bottom */
+  padding: 0.8rem; /* Sufficient padding for better interaction */
+  border: 1px solid #ccc; /* Subtle and consistent border styling */
+  border-radius: 4px; /* Rounded corners for a modern look */
+  width: calc(100% - 1.6rem); /* Full-width with padding consideration */
 }
+
+/* Button base styling */
 .btn {
-  border: 0.2rem solid #4d4d4d;
+  border: 2px solid #4d4d4d; /* Solid border with moderate thickness */
   cursor: pointer;
-  padding: 0.8rem 1rem 0.7rem;
-  text-transform: capitalize;
+  padding: 0.8rem 1rem; /* Balanced padding for button content */
+  text-transform: capitalize; /* Capitalize button text for readability */
+  transition: background-color 0.2s, border-color 0.2s; /* Smooth transition for hover and focus */
+  border-radius: 4px; /* Consistent rounded corners for all buttons */
 }
+
+/* Toggle button specific styling */
 .btn.toggle-btn {
-  border-color: #d3d3d3;
-  border-width: 1px;
+  background-color: #f0f0f0; /* Light background for toggle buttons */
+  border-color: #d3d3d3; /* Light grey border for inactive state */
 }
+
 .btn.toggle-btn[aria-pressed="true"] {
-  border-color: #4d4d4d;
-  text-decoration: underline;
+  background-color: #4d4d4d; /* Darker background for active state */
+  color: #fff; /* White text for contrast */
+  text-decoration: none; /* No underline for active state */
 }
+
+/* Button variations */
 .btn__danger {
-  background-color: #ca3c3c;
-  border-color: #bd2130;
+  background-color: #d9534f; /* Bootstrap-like red color for danger button */
   color: #fff;
 }
+
 .btn__filter {
-  border-color: lightgrey;
+  background-color: #e7e7e7; /* Neutral background for filter button */
+  border-color: #adadad; /* Matching border color */
 }
+
 .btn__primary {
-  background-color: #000;
+  background-color: #007bff; /* Primary blue background */
   color: #fff;
 }
+
+/* Button group layout */
 .btn-group {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Evenly space buttons */
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
+
 .btn-group > * {
-  flex: 1 1 49%;
+  flex: 1; /* Flex grow to fill space */
+  margin: 0 0.4rem; /* Spacing between buttons */
 }
-.btn-group > * + * {
-  margin-left: 0.8rem;
-}
+
+/* Label wrapper for better alignment */
 .label-wrapper {
-  flex: 0 0 100%;
-  margin: 0;
   text-align: center;
+  margin-bottom: 1rem; /* Space below the label for separation */
 }
+
+/* Accessibility and screen reader-only styles */
 .visually-hidden {
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  overflow: hidden;
-  position: absolute !important;
-  white-space: nowrap;
+  position: absolute;
   width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
-[class*="stack"] > * {
-  margin-bottom: 0;
-  margin-top: 0;
-}
-.stack-small > * + * {
-  margin-top: 1.25rem;
-}
+
+/* Spacing for stacked elements */
+.stack-small > * + *,
 .stack-large > * + * {
-  margin-top: 2.5rem;
+  margin-top: 1.25rem; /* Default top margin */
 }
+
 @media screen and (min-width: 550px) {
   .stack-small > * + * {
-    margin-top: 1.4rem;
+    margin-top: 1.5rem; /* Increased top margin for small stack */
   }
   .stack-large > * + * {
-    margin-top: 2.8rem;
+    margin-top: 2rem; /* Increased top margin for large stack */
   }
 }
+
+/* Exception for stacked elements needing closer spacing */
 .stack-exception {
-  margin-top: 1.2rem;
+  margin-top: 0.8rem; /* Reduced top margin */
 }
+
 /* End global styles */
 /* General app styles */
+/* Main container for the todo application */
 .todoapp {
   background: #fff;
-  box-shadow:
-    0 2px 4px 0 rgb(0 0 0 / 20%),
-    0 2.5rem 5rem 0 rgb(0 0 0 / 10%);
-  margin: 2rem 0 4rem 0;
-  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 25px 50px rgba(0, 0, 0, 0.1); /* Refined shadow for depth and focus */
+  margin: 2rem auto; /* Centered with vertical margin for spacing */
+  padding: 2rem; /* Consistent padding for all viewport sizes */
   position: relative;
+  max-width: 50rem; /* Max width to contain the content effectively */
 }
+
 @media screen and (min-width: 550px) {
   .todoapp {
-    padding: 4rem;
+    padding: 4rem; /* Increased padding for larger screens for more space */
   }
 }
+
 .todoapp > * {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 50rem;
+  margin: 0 auto; /* Centering children elements */
+  width: 100%; /* Ensuring children take up full container width */
 }
+
+/* Specific form styling within the todo app */
 .todoapp > form {
-  max-width: 100%;
+  display: flex; /* Using flexbox for better form layout */
+  flex-direction: column; /* Stacking form elements vertically */
+  gap: 1rem; /* Consistent gap between form elements */
 }
+
 .todoapp > h1 {
-  display: block;
-  margin: 0;
-  margin-bottom: 1rem;
-  max-width: 100%;
+  margin-bottom: 2rem; /* More space below the header for visual separation */
+  font-size: 2.4rem; /* Larger font size for heading */
+  font-weight: bold; /* Making the heading bold */
   text-align: center;
 }
+
+/* Styling for large labels in the todo app */
 .label__lg {
-  line-height: 1.01567;
-  font-weight: 300;
-  margin-bottom: 1rem;
-  padding: 0.8rem;
-  text-align: center;
+  line-height: 1.4; /* Improved line height for readability */
+  font-weight: 300; /* Lighter font weight for a modern look */
+  padding: 1rem; /* Adequate padding for touch targets */
+  text-align: center; /* Center aligning the text */
 }
+
+/* Styling for large input fields in the todo app */
 .input__lg {
-  border: 2px solid #000;
-  padding: 2rem;
+  border: 2px solid #ccc; /* Softer border color for less visual noise */
+  padding: 1.5rem; /* Balanced padding for input fields */
+  font-size: 1.6rem; /* Adjusting font size for readability */
+  width: 100%; /* Full width to utilize container space */
 }
+
 .input__lg:focus-visible {
-  border-color: #4d4d4d;
-  box-shadow: inset 0 0 0 2px;
+  border-color: #4d4d4d; /* Darker border color on focus for distinction */
+  box-shadow: inset 0 0 0 2px #eee; /* Subtle inset shadow for focus indication */
 }
+
+/* Enhancing large elements with responsive font sizes */
 [class*="__lg"] {
-  display: inline-block;
-  font-size: 1.9rem;
-  width: 100%;
+  display: block; /* Block display for better control over spacing */
+  margin-bottom: 1rem; /* Consistent margin for separation */
 }
-[class*="__lg"]:not(:last-child) {
-  margin-bottom: 1rem;
-}
+
 @media screen and (min-width: 620px) {
   [class*="__lg"] {
-    font-size: 2.4rem;
+    font-size: 2.4rem; /* Larger font size for larger displays */
   }
 }
+
 /* End general app styles */
 /* Todo item styles */
 .todo {
@@ -226,80 +265,89 @@ body {
 }
 /* End todo item styles */
 /* Checkbox styles */
+/* Todo item layout styles */
+.todo {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Center items vertically */
+  gap: 0.8rem; /* Space between children */
+  margin-bottom: 1rem; /* Space below each todo item */
+}
+
+.todo > * {
+  flex: 1; /* Children take equal space */
+}
+
+/* Todo text input styling */
+.todo-text {
+  border: 2px solid #ccc; /* Lighter border color */
+  min-height: 4.4rem; /* Minimum height for easy interaction */
+  padding: 0.4rem 0.8rem; /* Padding inside the text field */
+  width: 100%; /* Full width for text input */
+  font-size: 1.6rem; /* Adequate font size for readability */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.todo-text:focus-visible {
+  box-shadow: inset 0 0 0 2px #228bec; /* Focus indication with inset shadow */
+}
+
+/* Checkbox styles for custom appearance */
 .c-cb {
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-  clear: left;
-  display: block;
-  font-family: Arial, sans-serif;
-  font-size: 1.6rem;
-  font-weight: 400;
-  line-height: 1.25;
-  min-height: 44px;
-  padding-left: 40px;
+  display: flex;
+  align-items: center; /* Center the label and checkbox vertically */
   position: relative;
+  font-size: 1.6rem; /* Consistent font size with other elements */
+  user-select: none; /* Prevent text selection */
 }
-.c-cb > label::before,
+
 .c-cb > input[type="checkbox"] {
-  box-sizing: border-box;
-  height: 44px;
-  left: -2px;
-  top: -2px;
-  width: 44px;
-}
-.c-cb > input[type="checkbox"] {
-  -webkit-font-smoothing: antialiased;
-  cursor: pointer;
+  appearance: none; /* Remove default browser styling */
+  -webkit-appearance: none;
   margin: 0;
-  opacity: 0;
-  position: absolute;
-  z-index: 1;
-}
-.c-cb > label {
   cursor: pointer;
-  display: inline-block;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  margin-bottom: 0;
-  padding: 8px 15px 5px;
-  touch-action: manipulation;
+  width: 24px; /* Size of the custom checkbox */
+  height: 24px;
+  border: 2px solid #565656; /* Border color for custom checkbox */
+  border-radius: 4px; /* Rounded corners for checkbox */
+  position: relative;
+  z-index: 2;
 }
+
+.c-cb > label {
+  padding-left: 32px; /* Space for custom checkbox */
+  cursor: pointer;
+}
+
 .c-cb > label::before {
-  background: transparent;
-  border: 2px solid currentcolor;
   content: "";
+  display: none; /* Hide the pseudo-element as we are customizing the checkbox itself */
+}
+
+/* Style for checked state of the checkbox */
+.c-cb > input[type="checkbox"]:checked::after {
+  content: '✔';
   position: absolute;
+  top: 2px; /* Center the checkmark vertically */
+  left: 5px; /* Center the checkmark horizontally */
+  color: #228bec; /* Checkmark color */
+  font-size: 18px; /* Checkmark size */
+  z-index: 3;
 }
-.c-cb > input[type="checkbox"]:focus-visible + label::before {
-  border-width: 4px;
+
+/* Enhance focus visibility */
+.c-cb > input[type="checkbox"]:focus-visible {
   outline: 3px dashed #228bec;
+  outline-offset: 2px;
 }
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .webcam-container {
-      width: 20%;  
-      height: auto; 
+  .todo {
+    flex-direction: column;
   }
 }
 
-.c-cb > label::after {
-  background: transparent;
-  border: solid;
-  border-width: 0 0 5px 5px;
-  border-top-color: transparent;
-  box-sizing: content-box;
-  content: "";
-  height: 7px;
-  left: 9px;
-  opacity: 0;
-  position: absolute;
-  top: 11px;
-  transform: rotate(-45deg);
-  width: 18px;
-}
-.c-cb > input[type="checkbox"]:checked + label::after {
-  opacity: 1;
-}
 /* End checkbox styles */
 /* SMS按钮样式 */
 .btn-sms {

@@ -6,7 +6,7 @@ import FilterButton from "./components/FilterButton";
 import TranslateComponent from './components/TranslateComponent';
 import GoogleMap from './components/GoogleMapComponent'; 
 import { Modal } from 'react-bootstrap';
-
+import './modal.css';
 
 const FILTER_MAP = {
   All: () => true,
@@ -19,7 +19,6 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
 function App(props) {
   
   const [showMapModal, setShowMapModal] = useState(false);
-  const [showMap, setShowMap] = useState(false);
   const toggleMapModal = () => {
     setShowMapModal(!showMapModal);
   };
@@ -209,8 +208,10 @@ const [tasks, setTasks] = usePersistedState("tasks", []);
         {showMapModal && (
         <div className="modal" onClick={toggleMapModal}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <GoogleMap currentLocation={currentLocation} />
-            <button onClick={closeAndRefresh}>Close</button> {/* 关闭按钮 */}
+          <GoogleMap currentLocation={currentLocation} className="GoogleMap" />
+
+            <button onClick={closeAndRefresh} className="close-button">Close</button>
+
           </div>
         </div>
       )}

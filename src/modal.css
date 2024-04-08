@@ -1,0 +1,38 @@
+.modal {
+    position: fixed; /* 固定定位 */
+    top: 0;
+    left: 0;
+    width: 100vw; /* 视口的100%宽度 */
+    height: 100vh; /* 视口的100%高度 */
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+    z-index: 10; /* 足够高的层级以确保在顶部 */
+    display: flex; /* 用于内部内容的居中对齐 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+  }
+  
+  .modal-content {
+    position: relative; /* 相对定位 */
+    width: 80%; /* 你可以调整这个宽度 */
+    height: 80%; /* 你可以调整这个高度 */
+    background: #fff; /* 背景色 */
+  }
+  
+  .GoogleMap {
+    width: 100%; /* 充满容器宽度 */
+    height: 100%; /* 充满容器高度 */
+  }
+
+  .close-button {
+    position: absolute; /* 绝对定位 */
+    top: 10px; /* 距离顶部10像素 */
+    right: 10px; /* 距离右侧10像素 */
+    background: #f00; /* 背景颜色 */
+    color: #fff; /* 字体颜色 */
+    border: none; /* 无边框 */
+    padding: 5px 10px; /* 内边距 */
+    cursor: pointer; /* 鼠标指针变为手指形状 */
+  }
+  
+  /* 如果GoogleMap组件使用的不是'GoogleMap'类名，请更换为正确的类名 */
+  

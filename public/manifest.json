@@ -1,35 +1,24 @@
 {
-  "short_name": "TodoMatic",
-  "name": "TodoMatic Application",
-  "icons": [
-    {
-      "src": "/1react icon.png", 
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any "
-    },
-    {
-      "src": "/2react icon.png", 
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any "
-    },
-    {
-      "src": "/3react icon.png", 
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any "
-    },
-    {
-      "src": "/4react icon.png", 
-      "sizes": "64x64 ",
-      "purpose": "any "
-    }
-  ],
-  "start_url": "/my-app/todo-list/index.html",
-  "display": "fullscreen",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
-  "scope": "/",
-  "description": "A powerful Todo list application built with React."
+ "name": "Dynamic Web Technologies",
+ "short_name": "DWT",
+ "start_url": "./index.html",
+ "scope": "/",
+ "homepage": ".",
+ "display": "standalone",
+ "theme_color": "#000000",
+ "background_color": "#fff",
+ "description": "A test Application for the module of Dynamic Web Technologies.",
+ "icons": [
+ {
+ "src": "images/8666641_phone_outgoing_icon.png",
+ "sizes": "512x512",
+ "type": "image/png"
+ },
+ {
+ "src": "images/8666681_edit_icon.png",
+ "sizes": "512x512",
+ "type": "image/png",
+ "purpose": "markable"
+ }
+ ]
 }

@@ -57,6 +57,7 @@ function App(props) {
   useEffect(() => {
     geoFindMe();
   }, []);
+
     const success = (position) => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
@@ -76,6 +77,8 @@ function App(props) {
     useEffect(() => {
       geoFindMe();
     }, []);
+
+
 
 function usePersistedState(key,defaultValue){
 const [state,setState]=useState(()=>JSON.parse(localStorage.getItem(key))||defaultValue);
@@ -181,6 +184,7 @@ const [tasks, setTasks] = usePersistedState("tasks", []);
       setFilter={setFilter}
     />
   ));
+  
   function addTask(name) {
     const id = "todo-" + nanoid();
     const newTask = {

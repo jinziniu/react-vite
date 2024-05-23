@@ -6,7 +6,7 @@ const TranslateComponent = () => {
   const [language, setLanguage] = useState('en');
 
   const translateText = async () => {
-    const apiKey = 'AIzaSyAZ5Z93-PaKWNCbtS2u3lOB8pRabsMJrCs';
+    const apiKey = '';
     const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
     const data = {
       q: text,

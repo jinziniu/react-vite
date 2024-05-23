@@ -12,7 +12,7 @@ function MapComponent({ center }) {
   // center的结构应为{ lat: x, lng: y }
   return (
     <LoadScript
-    googleMapsApiKey="AIzaSyAZ5Z93-PaKWNCbtS2u3lOB8pRabsMJrCs"   // 请替换为您的Google Maps API密钥
+    googleMapsApiKey=""   // 请替换为您的Google Maps API密钥
     >
       <GoogleMap
         mapContainerStyle={containerStyle}

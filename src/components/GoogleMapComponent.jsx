@@ -9,7 +9,7 @@ const containerStyle = {
 function Map({ currentLocation }) {  // 接收 currentLocation 作为 prop
   return (
     <LoadScript
-      googleMapsApiKey="AIzaSyAZ5Z93-PaKWNCbtS2u3lOB8pRabsMJrCs" 
+      googleMapsApiKey="" 
     >
       <GoogleMap
         mapContainerStyle={containerStyle}
